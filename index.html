@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--
+Nome: André Messias Russi                   nº: 1         Turma: 3°i  
+Nome: Artur Martins Furlan                  nº: 3            
+Nome: Bruna de Carvalho Araújo              nº: 4                   
+Nome: Eliza Araújo Rosin                    nº: 6                                           
+Nome: Marcos Siqueira                       nº: 16                      
+ -->
+
+<html lang="pt-BR">
+<head>
+<title> Nave </title>
+<meta charset="UTF-8">
+<link rel="icon" href="" type="image/x-icon"?v=2 />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<style>
+canvas {
+border:1px solid #d3d3d3;
+background-color: #f1f1f1;
+}
+</style>
+<script>
+var cor = 'black';
+var cont = 1;
+var myGamePiece;
+
+function startGame() {
+    myGamePiece = new component(30, 30, "red", 450, 240); // Colocando a nave no canto inferior direito
+    myGameArea.start();
+}
+
+var myGameArea = {
+    canvas : document.createElement("canvas"),
+    start : function() {
+        this.canvas.width = 480;
+        this.canvas.height = 270;
+        this.context = this.canvas.getContext("2d");
+        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        this.interval = setInterval(updateGameArea, 20);
+    },
+    clear : function() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+}
+
+function component(width, height, color, x, y) {
+    this.width = width;
+    this.height = height;
+    this.x = x;
+    this.y = y;
+    this.color;
+    this.update = function(){
+        ctx = myGameArea.context;
+        if(cont % 10 == 0)
+            cor = 'black';
+        else
+            cor = 'black';
+        ctx.fillStyle = cor;
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+        cont++;
+    }
+}
+
+function updateGameArea() {
+    myGameArea.clear();
+    if (myGamePiece.y > 0) { // Verifica se a nave não atingiu o topo
+        myGamePiece.y -= 1; // Move a nave para cima
+    }
+    myGamePiece.update();
+}
+</script>
+
+<!-- Fim do Script do canvas-->
+
+
+
+</head>
+<body onload="startGame();">
+
+</body>
+</html>
